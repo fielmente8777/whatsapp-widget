@@ -12,6 +12,8 @@ function WidgetContent() {
       hid={searchParams.get("hid") || ""}
       phoneNumber={searchParams.get("phoneNumber") || ""}
       welcomeMessage={searchParams.get("message") || ""}
+      pageUrl={searchParams.get("pageUrl") || ""}
+      pathName={searchParams.get("pathName") || ""}
     />
   );
 }

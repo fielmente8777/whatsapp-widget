@@ -10,12 +10,16 @@ interface WhatsAppWidgetProps {
   hid: string;
   phoneNumber: string;
   welcomeMessage?: string;
+  pageUrl?: string;
+  pathName?: string;
 }
 
 export default function WhatsAppWidget({
   ndid,
   hid,
   phoneNumber,
+  pageUrl,
+  pathName,
   welcomeMessage = "Hi 👋 How can we help you?",
 }: WhatsAppWidgetProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,7 +59,8 @@ export default function WhatsAppWidget({
         body: JSON.stringify({
           ndid: ndid,
           hid: hid,
-          pageUrl: window.location.href,
+          pageUrl: pageUrl,
+          pathName: pathName,
           message: welcomeMessage,
           phoneNumber: phoneNumber,
         }),
@@ -97,15 +102,31 @@ export default function WhatsAppWidget({
   return (
     <>
       {/* Floating Button */}
+
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleStartChat}
+        disabled={loading}
+        className={`fixed bottom-6 right-6 z-50 flex size-12 items-center justify-center rounded-full text-white shadow-lg transition-all ${
+          loading
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-green-500 cursor-pointer"
+        }`}
+      >
+        {loading ? (
+          <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+        ) : (
+          <FaWhatsapp size={28} />
+        )}
+      </button>
+      {/* <button
+        onClick={handleStartChat}
         className="fixed bottom-6 right-6 z-50 flex size-12 items-center justify-center rounded-full bg-green-500 text-white shadow-lg cursor-pointer"
       >
         <FaWhatsapp size={28} />
-      </button>
+      </button> */}
 
       {/* Popup */}
-      {isOpen && (
+      {/* {isOpen && (
         <div className="fixed bottom-24 md:right-6 z-50 w-80 rounded-xl border border-gray-300 bg-white p-4 shadow-2xl">
           <div className="mb-4">
             <h3 className="font-semibold">WhatsApp Support</h3>
@@ -121,7 +142,7 @@ export default function WhatsAppWidget({
             {loading ? "Opening..." : "Start Chat"}
           </button>
         </div>
-      )}
+      )} */}
     </>
   );
 }
