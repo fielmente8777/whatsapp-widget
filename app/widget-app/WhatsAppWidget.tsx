@@ -3,7 +3,7 @@ import { generateSessionId, generateVisitorId } from "@/utils/helper";
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://gian-1eve.onrender.com";
 
 interface WhatsAppWidgetProps {
   ndid: string;
@@ -45,8 +45,7 @@ export default function WhatsAppWidget({
 
   const handleStartChat = async () => {
     try {
-      console.log("aaya");
-      // setLoading(true);
+      setLoading(true);
 
       const response = await fetch(`${BASE_URL}/api/v1/widget/click`, {
         method: "POST",

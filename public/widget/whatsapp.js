@@ -17,7 +17,7 @@
     message,
   });
 
-  iframe.src = `http://localhost:3001?${params.toString()}`;
+  iframe.src = `https://whatsapp-widget-tau.vercel.app?${params.toString()}`;
 
   iframe.style.position = "fixed";
   iframe.style.bottom = "20px";
