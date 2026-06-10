@@ -23,27 +23,27 @@ export default function WhatsAppWidget({
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const getTrackingPayload = (websiteId: string) => {
-    const url = new URL(window.location.href);
+  // const getTrackingPayload = (websiteId: string) => {
+  //   const url = new URL(window.location.href);
 
-    return {
-      websiteId,
-      visitorId: generateVisitorId(),
-      sessionId: generateSessionId(),
-      pageUrl: window.location.href,
-      pathname: window.location.pathname,
-      hostname: window.location.hostname,
-      referrer: document.referrer,
-      userAgent: navigator.userAgent,
-      language: navigator.language,
-      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      screenWidth: window.screen.width,
-      screenHeight: window.screen.height,
-      utmSource: url.searchParams.get("utm_source"),
-      utmMedium: url.searchParams.get("utm_medium"),
-      utmCampaign: url.searchParams.get("utm_campaign"),
-    };
-  };
+  //   return {
+  //     websiteId,
+  //     visitorId: generateVisitorId(),
+  //     sessionId: generateSessionId(),
+  //     pageUrl: window.location.href,
+  //     pathname: window.location.pathname,
+  //     hostname: window.location.hostname,
+  //     referrer: document.referrer,
+  //     userAgent: navigator.userAgent,
+  //     language: navigator.language,
+  //     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  //     screenWidth: window.screen.width,
+  //     screenHeight: window.screen.height,
+  //     utmSource: url.searchParams.get("utm_source"),
+  //     utmMedium: url.searchParams.get("utm_medium"),
+  //     utmCampaign: url.searchParams.get("utm_campaign"),
+  //   };
+  // };
 
   const handleStartChat = async () => {
     try {
