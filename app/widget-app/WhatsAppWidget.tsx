@@ -3,8 +3,6 @@ import { generateSessionId, generateVisitorId } from "@/utils/helper";
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
-const BASE_URL = "https://gian-1eve.onrender.com";
-
 interface WhatsAppWidgetProps {
   ndid: string;
   hid: string;
@@ -51,20 +49,23 @@ export default function WhatsAppWidget({
     try {
       setLoading(true);
 
-      const response = await fetch(`${BASE_URL}/api/v1/widget/click`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/widget/click`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ndid: ndid,
+            hid: hid,
+            pageUrl: pageUrl,
+            pathName: pathName,
+            message: welcomeMessage,
+            phoneNumber: phoneNumber,
+          }),
         },
-        body: JSON.stringify({
-          ndid: ndid,
-          hid: hid,
-          pageUrl: pageUrl,
-          pathName: pathName,
-          message: welcomeMessage,
-          phoneNumber: phoneNumber,
-        }),
-      });
+      );
 
       const data = await response.json();
       // const whatsappMessage = `${welcomeMessage} \n #${data?.result?.doc?.clickId}`;
