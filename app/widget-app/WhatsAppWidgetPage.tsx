@@ -1,9 +1,9 @@
 "use client";
-
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import WhatsAppWidget from "./WhatsAppWidget";
 
-export default function WhatsAppWidgetPage() {
+function WidgetContent() {
   const searchParams = useSearchParams();
 
   return (
@@ -13,5 +13,13 @@ export default function WhatsAppWidgetPage() {
       phoneNumber={searchParams.get("phoneNumber") || ""}
       welcomeMessage={searchParams.get("message") || ""}
     />
+  );
+}
+
+export default function WhatsAppWidgetPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <WidgetContent />
+    </Suspense>
   );
 }

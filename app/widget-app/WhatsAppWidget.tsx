@@ -1,5 +1,4 @@
 "use client";
-
 import { generateSessionId, generateVisitorId } from "@/utils/helper";
 import { useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
